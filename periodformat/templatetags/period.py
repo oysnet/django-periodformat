@@ -6,7 +6,8 @@ register = template.Library()
 
 def has_time(*args):
     for d in args:
-        if d.hour != 0 or d.time != 0:
+        #if d.hour != 0 or d.time != 0:
+        if str(d.time()) != '00:00:00':
             return True
         
 def has_minutes(*args):
@@ -91,6 +92,7 @@ def format_period(start_date, end_date=None):
                 'end_month' : date(end_date,'F'),
                 'end_year': date(end_date,'Y')
         }
+        print key
         return (formats[key] % data).capitalize()
     else:
         return date(start_date,'l j F Y').capitalize()
